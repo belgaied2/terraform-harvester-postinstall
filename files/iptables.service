@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable NAT
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+
+[Install]
+WantedBy=multi-user.target
