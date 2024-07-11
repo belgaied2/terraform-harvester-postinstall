@@ -67,7 +67,7 @@ variable "additional_runcmd_data" {
 variable "vlan_ids" {
   description = "vlan ids"
   type = list(number)
-  default = [1]
+  default = [100]
   
 }
 

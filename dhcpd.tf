@@ -101,7 +101,7 @@ resource "null_resource" "wicked_ifup" {
     }
 
     inline = [
-      for vlan in var.vlan_ids : "sudo ip l add link mgmt-br name mgmt.${vlan} type vlan id ${vlan} && sudo ip a add ${cidrhost(var.equinix_private_ipv4_subnets[count.index], 2)}/${cidrnetmask(var.equinix_private_ipv4_subnets[count.index])} dev mgmt.${vlan} && sudo ip l set dev mgmt.${vlan} up"
+      for vlan in var.vlan_ids : "sudo ip l add link mgmt-br name mgmt.${vlan} type vlan id ${vlan} && sudo ip a add ${cidrhost(var.equinix_private_ipv4_subnets[0], 2+count.index )}/${cidrnetmask(var.equinix_private_ipv4_subnets[0])} dev mgmt.${vlan} && sudo ip l set dev mgmt.${vlan} up"
     ]
   }
   

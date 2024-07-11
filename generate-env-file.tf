@@ -36,15 +36,7 @@ export RANCHER_TURTLES_LABEL='    cluster-api.cattle.io/rancher-auto-import: "tr
 export HARVESTER_ENDPOINT=https://${local.harvester_host}:6443
 export VM_NETWORK=harvester-public/vlan-${var.vlan_ids[0]}
 export HARVESTER_KUBECONFIG_B64=${data.external.gen_env_file.result.harvester-kubeconfig}
-export CLOUD_CONFIG_SECRET='    ---
-    apiVersion: v1
-    data:
-      cloud-config: ${data.external.gen_env_file.result.cloud-config}
-    kind: Secret
-    metadata:
-      creationTimestamp: null
-      name: cloud-config
-      namespace: kube-system'
+export CLOUD_CONFIG_SECRET=${data.external.gen_env_file.result.cloud-config}
   EOT
   overwrite_on_create = true
   branch    = var.github_branch
